@@ -1,6 +1,41 @@
 import React from 'react'
-
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  Box,
+  Paper,
+  Link,
+  Grid,
+  TextField,
+  Typography,
+  Alert,
+  MenuItem
+} from "@mui/material";
+import { create } from './db';
 function Form() {
+  const genders = [
+    {
+      value: 'MALE',
+      label: 'Male',
+    },
+    {
+      value: 'FEMALE',
+      label: 'Female',
+    }
+  ];
+  const [gender, setGender] = React.useState('MALE');
+  const [firstname, setFname] = React.useState('');
+  const [lastname, setLname] = React.useState('');
+  const [age, setAge] = React.useState(0);
+
+  const handleChange = (event) => {
+    setGender(event.target.value);
+  };
+  const handleSubmit=(e)=>{
+    e.preventDefault()   
+create({gender,firstname,lastname,age}).then(res=>{console.log(res)})
+  }
     return (
         <Box
           component="form"
@@ -9,158 +44,62 @@ function Form() {
           }}
           noValidate
           autoComplete="off"
+          onSubmit={handleSubmit}
         >
+       
           <div>
+         
             <TextField
-              required
-              id="outlined-required"
-              label="Required"
-              defaultValue="Hello World"
+              id="firstname"
+              label="First Name"
+           
+              onChange={(e) => setFname(e.target.value)}
+              variant="filled"
+            />
+                <TextField
+              id="lastname"
+              label="Last Name"
+           
+              onChange={(e) => setLname(e.target.value)}
+              variant="filled"
             />
             <TextField
-              disabled
-              id="outlined-disabled"
-              label="Disabled"
-              defaultValue="Hello World"
-            />
-            <TextField
-              id="outlined-password-input"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-            />
-            <TextField
-              id="outlined-read-only-input"
-              label="Read Only"
-              defaultValue="Hello World"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-            <TextField
-              id="outlined-number"
-              label="Number"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField id="outlined-search" label="Search field" type="search" />
-            <TextField
-              id="outlined-helperText"
-              label="Helper text"
-              defaultValue="Default Value"
-              helperText="Some important text"
-            />
+          id="outlined-number"
+          label="Age"
+          type="number"
+          onChange={(e) => setAge(e.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+              <TextField
+          id="outlined-select-currency"
+          select
+          label="Gender"
+          value={gender}
+          onChange={handleChange}
+          
+        >
+          {genders.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <div>
+        <Button
+                type="submit"
+          
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Submit
+              </Button>
+
+        </div>
+    
           </div>
-          <div>
-            <TextField
-              required
-              id="filled-required"
-              label="Required"
-              defaultValue="Hello World"
-              variant="filled"
-            />
-            <TextField
-              disabled
-              id="filled-disabled"
-              label="Disabled"
-              defaultValue="Hello World"
-              variant="filled"
-            />
-            <TextField
-              id="filled-password-input"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              variant="filled"
-            />
-            <TextField
-              id="filled-read-only-input"
-              label="Read Only"
-              defaultValue="Hello World"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
-            <TextField
-              id="filled-number"
-              label="Number"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="filled"
-            />
-            <TextField
-              id="filled-search"
-              label="Search field"
-              type="search"
-              variant="filled"
-            />
-            <TextField
-              id="filled-helperText"
-              label="Helper text"
-              defaultValue="Default Value"
-              helperText="Some important text"
-              variant="filled"
-            />
-          </div>
-          <div>
-            <TextField
-              required
-              id="standard-required"
-              label="Required"
-              defaultValue="Hello World"
-              variant="standard"
-            />
-            <TextField
-              disabled
-              id="standard-disabled"
-              label="Disabled"
-              defaultValue="Hello World"
-              variant="standard"
-            />
-            <TextField
-              id="standard-password-input"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              variant="standard"
-            />
-            <TextField
-              id="standard-read-only-input"
-              label="Read Only"
-              defaultValue="Hello World"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="standard"
-            />
-            <TextField
-              id="standard-number"
-              label="Number"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="standard"
-            />
-            <TextField
-              id="standard-search"
-              label="Search field"
-              type="search"
-              variant="standard"
-            />
-            <TextField
-              id="standard-helperText"
-              label="Helper text"
-              defaultValue="Default Value"
-              helperText="Some important text"
-              variant="standard"
-            />
-          </div>
+      
         </Box>
       );
 }

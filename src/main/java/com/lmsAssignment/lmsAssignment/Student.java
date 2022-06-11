@@ -22,7 +22,15 @@ public class Student {
     private String lastname;
     private Gender gender;
 
+    public int getAge() {
+        return age;
+    }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    private int age;
     public String getFirstname() {
         return firstname;
     }
