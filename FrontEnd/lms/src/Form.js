@@ -93,7 +93,7 @@ create({gender,firstname,lastname,age}).then(res=>{console.log(res)})
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Submit
+            Add student
               </Button>
 
         </div>
