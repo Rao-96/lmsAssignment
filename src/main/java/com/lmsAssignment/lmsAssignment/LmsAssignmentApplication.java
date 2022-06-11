@@ -2,6 +2,7 @@ package com.lmsAssignment.lmsAssignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class LmsAssignmentApplication {
@@ -11,5 +12,6 @@ public class LmsAssignmentApplication {
 	{
 		SpringApplication.run(LmsAssignmentApplication.class, args);
 	}
+
 
 }

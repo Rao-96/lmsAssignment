@@ -1,5 +1,16 @@
 package com.lmsAssignment.lmsAssignment;
 
-public class StudentService {
+import java.util.List;
 
+public interface StudentService {
+
+    Student createStudent(Student Student);
+
+
+
+    List< Student > getAllStudent();
+
+
+
+    void deleteStudent(String id);
 }
